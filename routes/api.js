@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Workout = require("../models/workout.js");
 
 //creates new workout route
-router.post("/workouts", ({ body }, res) => {
+router.post("/workout", ({ body }, res) => {
     Workout.create({})
         .then(WorkoutDB => {
             console.log(`post: ${WorkoutDB}`)
@@ -14,7 +14,7 @@ router.post("/workouts", ({ body }, res) => {
 });
 
 //finds all workouts in db route
-router.get("/workouts", (req, res) => {
+router.get("/workout", (req, res) => {
    //aggregate function
     Workout.aggregate([
         {
@@ -33,7 +33,7 @@ router.get("/workouts", (req, res) => {
 });
 
 //adds a workout route
-router.put("/workouts/:id", ({ params, body }, res) => {
+router.put("/workout/:id", ({ params, body }, res) => {
 
     Workout.findOneAndUpdate(
         { _id: params.id },
@@ -49,7 +49,7 @@ router.put("/workouts/:id", ({ params, body }, res) => {
 })
 
 //retrieves last 7 workouts for stats page route
-router.get("/workouts/range", (req, res) => {
+router.get("/workout/range", (req, res) => {
    //aggregate function
     Workout.aggregate([
         {
